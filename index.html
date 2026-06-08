@@ -1306,39 +1306,87 @@ function claimFounder() {
 
 // ═══════════════ FOUNDER FORM ═══════════════
 let spots = 401;
-async function submitFounder() {
-  const email = document.getElementById('founder-email').value.trim();
-  const btn = document.querySelector('.founder-submit');
+  async function submitFounder() {
+
+  const email = document
+    .getElementById('founder-email')
+    .value
+    .trim();
+
+  const btn =
+    document.querySelector('.founder-submit');
+
+  // Validate email
   if (!email || !email.includes('@')) {
-  }
-  const { error } = await supabase
-  .from('waitlist')
-  .insert([
-    {
-      email: email
-    }
-  ]);
 
-if (error) {
+    document.querySelector('.founder-input')
+      .style.borderColor = '#EF4444';
 
-  if (
-    error.message.includes('duplicate') ||
-    error.message.includes('unique')
-  ) {
-    alert('You are already on the waitlist.');
-  } else {
-    alert(error.message);
-  }
+    document.querySelector('.founder-input')
+      .style.boxShadow =
+      '0 0 16px rgba(239,68,68,0.3)';
 
-  return;
-}
-    document.querySelector('.founder-input').style.borderColor = '#EF4444';
-    document.querySelector('.founder-input').style.boxShadow = '0 0 16px rgba(239,68,68,0.3)';
     setTimeout(() => {
-      document.querySelector('.founder-input').style.borderColor = '';
-      document.querySelector('.founder-input').style.boxShadow = '';
+      document.querySelector('.founder-input')
+        .style.borderColor = '';
+
+      document.querySelector('.founder-input')
+        .style.boxShadow = '';
     }, 2000);
+
     return;
+  }
+
+  // Save to Supabase
+  const { error } = await supabase
+    .from('waitlist')
+    .insert([
+      {
+        email: email
+      }
+    ]);
+
+  if (error) {
+
+    if (
+      error.message.includes('duplicate') ||
+      error.message.includes('unique')
+    ) {
+      alert('You are already on the waitlist.');
+    } else {
+      alert(error.message);
+    }
+
+    return;
+  }
+
+  // Success UI
+  spots--;
+
+  document.getElementById('spot-count')
+    .textContent = spots;
+
+  btn.textContent = '✓ SPOT RESERVED!';
+
+  btn.style.background =
+    'linear-gradient(135deg,#22C55E,#16A34A)';
+
+  btn.style.boxShadow =
+    '0 0 40px rgba(34,197,94,0.4)';
+
+  document.getElementById('founder-email')
+    .value = '';
+
+  document.getElementById('founder-email')
+    .placeholder =
+    'Welcome, Founder. Your ascension begins.';
+
+  setTimeout(() => {
+    btn.textContent = '⚡ RESERVE SPOT';
+    btn.style.background = '';
+    btn.style.boxShadow = '';
+  }, 5000);
+}
   }
   spots--;
   document.getElementById('spot-count').textContent = spots;
@@ -1352,7 +1400,7 @@ if (error) {
     btn.style.background = '';
     btn.style.boxShadow = '';
   }, 5000);
-}
+  }
 
 // ═══════════════ STAT CARD MOUSE GLOW ═══════════════
 document.querySelectorAll('.big-stat-card').forEach(card => {

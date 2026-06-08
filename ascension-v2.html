@@ -1305,11 +1305,33 @@ function claimFounder() {
 }
 
 // ═══════════════ FOUNDER FORM ═══════════════
-let spots = 247;
-function submitFounder() {
+let spots = 401;
+async function submitFounder() {
   const email = document.getElementById('founder-email').value.trim();
   const btn = document.querySelector('.founder-submit');
   if (!email || !email.includes('@')) {
+  }
+  const { error } = await supabase
+  .from('waitlist')
+  .insert([
+    {
+      email: email
+    }
+  ]);
+
+if (error) {
+
+  if (
+    error.message.includes('duplicate') ||
+    error.message.includes('unique')
+  ) {
+    alert('You are already on the waitlist.');
+  } else {
+    alert(error.message);
+  }
+
+  return;
+}
     document.querySelector('.founder-input').style.borderColor = '#EF4444';
     document.querySelector('.founder-input').style.boxShadow = '0 0 16px rgba(239,68,68,0.3)';
     setTimeout(() => {
@@ -1355,12 +1377,10 @@ setInterval(() => {
     }
   }
 }, 12000);
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
-const supabaseUrl = "
-https://zkaaxzkloasyragioubo.supabase.co/rest/v1/";
+const supabaseUrl = "https://zkaaxzkloasyragioubo.supabase.co";
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InprYWF4emtsb2FzeXJhZ2lvdWJvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA4NTA5MDgsImV4cCI6MjA5NjQyNjkwOH0.Lg_YdGmtOkWI-nC0a6c8OPYrq-m6u6wmdvxLErdlmho";
-
 const supabase = window.supabase.createClient(
   supabaseUrl,
   supabaseKey

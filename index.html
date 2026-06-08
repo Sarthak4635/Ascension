@@ -1306,6 +1306,14 @@ function claimFounder() {
 
 // ═══════════════ FOUNDER FORM ═══════════════
 let spots = 401;
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+const supabaseUrl = "https://zkaaxzkloasyragioubo.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InprYWF4emtsb2FzeXJhZ2lvdWJvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA4NTA5MDgsImV4cCI6MjA5NjQyNjkwOH0.Lg_YdGmtOkWI-nC0a6c8OPYrq-m6u6wmdvxLErdlmho";
+const supabase = window.supabase.createClient(
+  supabaseUrl,
+  supabaseKey
+);
   async function submitFounder() {
 
   const email = document
@@ -1386,6 +1394,7 @@ let spots = 401;
     btn.style.background = '';
     btn.style.boxShadow = '';
   }, 5000);
+  } //
 // ═══════════════ STAT CARD MOUSE GLOW ═══════════════
 document.querySelectorAll('.big-stat-card').forEach(card => {
   card.addEventListener('mousemove', e => {
@@ -1411,13 +1420,6 @@ setInterval(() => {
 }, 12000);
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script>
-const supabaseUrl = "https://zkaaxzkloasyragioubo.supabase.co";
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InprYWF4emtsb2FzeXJhZ2lvdWJvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA4NTA5MDgsImV4cCI6MjA5NjQyNjkwOH0.Lg_YdGmtOkWI-nC0a6c8OPYrq-m6u6wmdvxLErdlmho";
-const supabase = window.supabase.createClient(
-  supabaseUrl,
-  supabaseKey
-);
 </script>
 </body>
 </html>

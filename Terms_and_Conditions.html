@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Terms &amp; Conditions — Ascension</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --surface: #111118;
+      --border: rgba(255,255,255,0.07);
+      --accent: #c8a96e;
+      --accent-dim: rgba(200,169,110,0.15);
+      --text: #e8e4dc;
+      --muted: #7a7570;
+      --heading: #f5f0e8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.8;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 80px 40px 120px;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 48px;
+      margin-bottom: 64px;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .brand {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(42px, 6vw, 68px);
+      font-weight: 300;
+      color: var(--heading);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    .meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+    }
+
+    section {
+      margin-bottom: 56px;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    section:nth-child(2) { animation-delay: 0.1s; }
+    section:nth-child(3) { animation-delay: 0.15s; }
+    section:nth-child(4) { animation-delay: 0.2s; }
+    section:nth-child(5) { animation-delay: 0.25s; }
+    section:nth-child(6) { animation-delay: 0.3s; }
+    section:nth-child(7) { animation-delay: 0.35s; }
+    section:nth-child(8) { animation-delay: 0.4s; }
+    section:nth-child(9) { animation-delay: 0.45s; }
+
+    h2 {
+      font-size: 13px;
+      font-family: 'DM Mono', monospace;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    h2::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    p {
+      color: var(--text);
+      margin-bottom: 16px;
+      font-weight: 300;
+    }
+
+    ul {
+      list-style: none;
+      margin: 8px 0 16px;
+    }
+
+    ul li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 8px;
+      font-weight: 300;
+      color: var(--text);
+    }
+
+    ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 14px;
+    }
+
+    .callout {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-left: 3px solid var(--accent);
+      padding: 24px 28px;
+      margin: 24px 0;
+      border-radius: 2px;
+    }
+
+    .callout p { margin: 0; }
+
+    .warning {
+      border: 1px solid rgba(200,169,110,0.3);
+      background: rgba(200,169,110,0.05);
+      border-left: 3px solid var(--accent);
+      padding: 24px 28px;
+      margin: 24px 0;
+      border-radius: 2px;
+    }
+
+    .warning p { margin: 0; font-size: 16px; }
+
+    footer {
+      margin-top: 80px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      animation: fadeUp 0.8s 0.6s ease both;
+    }
+
+    footer p {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    footer a:hover { opacity: 0.7; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .page-wrapper { padding: 48px 24px 80px; }
+      h1 { font-size: 38px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <header>
+    <div class="brand">Ascension</div>
+    <h1>Terms &amp;<br>Conditions</h1>
+    <p class="meta">Last Updated: June 2026</p>
+  </header>
+
+  <section>
+    <p>Welcome to Ascension. These Terms and Conditions ("Terms") govern your use of the Ascension website and any related services. By accessing or using the website, you agree to be bound by these Terms.</p>
+  </section>
+
+  <section>
+    <h2>Use of the Website</h2>
+    <p>You agree to use the website only for lawful purposes and in accordance with these Terms. You must not:</p>
+    <ul>
+      <li>Violate applicable laws or regulations</li>
+      <li>Attempt unauthorized access to systems or data</li>
+      <li>Interfere with website functionality</li>
+      <li>Submit false or misleading information</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Pre-Registration &amp; Waitlist</h2>
+    <p>Joining the waitlist does not guarantee:</p>
+    <ul>
+      <li>Access to the product</li>
+      <li>Early access invitations</li>
+      <li>Specific launch dates</li>
+      <li>Availability of future features</li>
+    </ul>
+    <div class="callout">
+      <p>Ascension reserves the right to modify, delay, or discontinue any aspect of the product at any time.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Intellectual Property</h2>
+    <p>All content on the website, including logos, branding, text, graphics, designs, and software, is owned by Ascension or its licensors and is protected by applicable intellectual property laws.</p>
+    <p>You may not reproduce, distribute, or commercially use any content without written permission.</p>
+  </section>
+
+  <section>
+    <h2>User Submissions</h2>
+    <p>Information you submit through forms remains your responsibility. You represent that all information provided is accurate and lawful.</p>
+  </section>
+
+  <section>
+    <h2>No Warranty</h2>
+    <p>The website is provided on an "as is" and "as available" basis. We make no guarantees regarding:</p>
+    <ul>
+      <li>Availability</li>
+      <li>Reliability</li>
+      <li>Accuracy</li>
+      <li>Performance</li>
+      <li>Future functionality</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Limitation of Liability</h2>
+    <div class="warning">
+      <p>To the maximum extent permitted by law, Ascension shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the website.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Third-Party Services</h2>
+    <p>The website may rely on third-party providers for hosting, analytics, email delivery, and related services. We are not responsible for the content or practices of third-party services.</p>
+  </section>
+
+  <section>
+    <h2>Termination</h2>
+    <p>We reserve the right to suspend or terminate access to the website at our discretion without prior notice.</p>
+  </section>
+
+  <section>
+    <h2>Changes to These Terms</h2>
+    <p>We may update these Terms at any time. Continued use of the website after changes are posted constitutes acceptance of the updated Terms.</p>
+  </section>
+
+  <section>
+    <h2>Governing Law</h2>
+    <p>These Terms shall be governed and interpreted in accordance with the laws of India.</p>
+  </section>
+
+  <footer>
+    <p>Questions? Contact us at <a href="mailto:hello@ascension.app">hello@ascension.app</a></p>
+    <p>© 2026 Ascension. All rights reserved.</p>
+  </footer>
+
+</div>
+</body>
+</html>

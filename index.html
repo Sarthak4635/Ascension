@@ -1338,27 +1338,27 @@ let spots = 401;
   }
 
   // Save to Supabase
-  const { error } = await supabase
-    .from('waitlist')
-    .insert([
-      {
-        email: email
-      }
-    ]);
-
-  if (error) {
-
-    if (
-      error.message.includes('duplicate') ||
-      error.message.includes('unique')
-    ) {
-      alert('You are already on the waitlist.');
-    } else {
-      alert(error.message);
-    }
-
-    return;
+ const response = await fetch(
+  "https://zkaaxzkloasyragioubo.supabase.co/rest/v1/waitlist",
+  {
+    method: "POST",
+    headers: {
+      "apikey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InprYWF4emtsb2FzeXJhZ2lvdWJvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA4NTA5MDgsImV4cCI6MjA5NjQyNjkwOH0.Lg_YdGmtOkWI-nC0a6c8OPYrq-m6u6wmdvxLErdlmho",
+      "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InprYWF4emtsb2FzeXJhZ2lvdWJvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA4NTA5MDgsImV4cCI6MjA5NjQyNjkwOH0.Lg_YdGmtOkWI-nC0a6c8OPYrq-m6u6wmdvxLErdlmho",
+      "Content-Type": "application/json",
+      "Prefer": "return=minimal"
+    },
+    body: JSON.stringify({
+      email: email
+    })
   }
+);
+
+if (!response.ok) {
+  const errorText = await response.text();
+  alert("Error: " + errorText);
+  return;
+}
 
   // Success UI
   spots--;
@@ -1411,6 +1411,5 @@ setInterval(() => {
   }
 }, 12000);
 </script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </body>
 </html>
